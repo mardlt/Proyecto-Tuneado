@@ -1,0 +1,29 @@
+import plotly.express as px
+import pandas as pd
+
+from google.colab import files
+from google.colab import drive
+import os
+
+drive.mount('/content/drive') #Debemos confirmar acceso a nuestra cuenta para el COLAB
+%cd "/content/drive/My Drive/Colab Notebooks/"
+%pwd
+fuente = '.'
+arch = "datosGPS.csv"
+
+df = pd.read_csv("datosGPS.csv")
+
+fig = px.scatter_geo(df,lat='easting',lon='northing', hover_name="ID")
+fig.update_layout(title = 'Mis Datos', title_x=0.5)
+fig.show()
+
+drive.mount('/content/drive') 
+%cd "/content/drive/My Drive/Mi unidad/"
+%pwd
+fuente = '.'
+arch = "Servicios.csv"
+
+df = pd.read_csv("Servicios.csv")
+
+fig = px.scatter_geo(df,lat='X',lon='Y')
+fig.update_layout(title = 'Mis Datos', title_x=0.5)
